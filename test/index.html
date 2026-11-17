@@ -3,425 +3,276 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f7f2">
-  <meta name="description" content="Small-batch apples, grown slowly and picked at their best. Meet the orchard and shop the season.">
-  <title>Good Fruit — Apples worth slowing down for</title>
+  <meta name="theme-color" content="#f5f2e9">
+  <meta name="description" content="A fan-made page cheering on Jacob Guhr, Paly cross country runner.">
+  <title>Jacob Guhr — Paly XC Fan Club</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       color-scheme: light;
-      --ink: #20231e;
+      --paper: #f5f2e9;
+      --ink: #17241e;
+      --green: #164b38;
+      --lime: #d3f26a;
+      --orange: #f06b42;
       --muted: #72766d;
-      --paper: #f7f7f2;
-      --white: #fff;
-      --red: #c83d2e;
-      --red-dark: #a92d22;
-      --green: #244b37;
-      --line: #e5e6dd;
-      --serif: "Fraunces", Georgia, serif;
+      --line: #dcded3;
       --sans: "DM Sans", sans-serif;
+      --display: "Space Grotesk", sans-serif;
+      --mono: "DM Mono", monospace;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
     body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
     button, a { font: inherit; }
     button { color: inherit; }
-    a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
-    .wrap { width: min(1280px, calc(100% - 64px)); margin-inline: auto; }
+    .wrap { width: min(1190px, calc(100% - 64px)); margin-inline: auto; }
+    .mono { font-family: var(--mono); text-transform: uppercase; letter-spacing: .1em; }
 
-    .announcement { display: flex; justify-content: center; gap: 8px; padding: 10px 18px; color: #fff; background: var(--green); font-size: 11px; font-weight: 600; letter-spacing: .04em; text-align: center; }
-    .announcement span { color: #b4ce84; }
-    .header { position: relative; z-index: 5; display: flex; align-items: center; justify-content: space-between; min-height: 76px; border-bottom: 1px solid var(--line); background: var(--paper); }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-    .wordmark { display: inline-flex; align-items: center; gap: 9px; font-size: 19px; font-weight: 700; letter-spacing: -.06em; }
-    .mark { width: 19px; height: 23px; position: relative; display: inline-block; border-radius: 48% 48% 48% 48% / 55% 55% 45% 45%; background: var(--red); transform: rotate(-5deg); }
-    .mark::before { content: ""; position: absolute; width: 8px; height: 4px; top: -4px; left: 10px; background: var(--green); border-radius: 100% 0; transform: rotate(-28deg); }
-    .nav { display: flex; align-items: center; gap: 36px; font-size: 13px; font-weight: 500; }
+    .topline { display: flex; justify-content: center; gap: 9px; padding: 10px 18px; color: var(--paper); background: var(--green); font: 10px var(--mono); letter-spacing: .1em; text-align: center; text-transform: uppercase; }
+    .topline span { color: var(--lime); }
+    .header { position: sticky; z-index: 5; top: 0; border-bottom: 1px solid var(--line); background: #f5f2e9ed; backdrop-filter: blur(12px); }
+    .header-inner { display: flex; min-height: 73px; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font: 700 14px var(--display); letter-spacing: -.04em; }
+    .brand-mark { display: grid; width: 31px; height: 31px; place-items: center; color: var(--lime); background: var(--green); font: 500 11px var(--mono); letter-spacing: -.07em; transform: rotate(-5deg); }
+    .nav { display: flex; align-items: center; gap: 32px; font-size: 12px; font-weight: 600; }
     .nav a { transition: color .2s ease; }
-    .nav a:hover { color: var(--red); }
-    .header-actions { display: flex; align-items: center; gap: 12px; }
-    .icon-button { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer; transition: background .2s, border-color .2s; }
-    .icon-button:hover { border-color: var(--ink); background: #fff; }
-    .cart-button { position: relative; }
-    .cart-count { position: absolute; top: -3px; right: -3px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; color: white; background: var(--red); font-size: 10px; line-height: 17px; text-align: center; }
-    .menu-toggle { display: none; }
+    .nav a:hover { color: var(--orange); }
+    .nav-cta { padding: 11px 15px; border: 1px solid var(--ink); font-size: 11px; }
+    .menu-toggle { display: none; width: 42px; height: 42px; place-items: center; border: 1px solid var(--line); background: transparent; cursor: pointer; }
 
-    .hero { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; min-height: 570px; overflow: hidden; background: #e7eddf; }
-    .hero-copy { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 76px max(8%, calc((100vw - 1280px) / 2)); padding-right: 5%; }
-    .eyebrow { display: flex; align-items: center; gap: 9px; margin: 0 0 20px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
-    .eyebrow::before { content: ""; display: block; width: 21px; height: 1px; background: currentColor; }
+    .hero { display: grid; min-height: 620px; grid-template-columns: 1fr 1fr; align-items: center; gap: 5%; padding-block: 62px 76px; }
+    .hero-copy { position: relative; z-index: 1; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 21px; color: var(--green); font: 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { width: 23px; height: 2px; background: var(--orange); content: ""; }
     h1, h2, h3, p { margin-top: 0; }
-    h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -.045em; }
-    h1 { max-width: 520px; margin-bottom: 20px; font-size: clamp(48px, 5.5vw, 76px); line-height: .98; }
-    h1 em { color: var(--red); font-weight: 500; }
-    .hero-copy > p:not(.eyebrow) { max-width: 390px; margin-bottom: 29px; color: #555d50; font-size: 15px; line-height: 1.75; }
-    .button { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 50px; padding: 0 22px; border: 0; border-radius: 2px; color: #fff; background: var(--red); font-size: 12px; font-weight: 700; cursor: pointer; transition: background .2s, transform .2s; }
-    .button:hover { background: var(--red-dark); transform: translateY(-2px); }
-    .button svg { transition: transform .2s; }
-    .button:hover svg { transform: translateX(3px); }
-    .hero-note { display: flex; align-items: center; gap: 12px; margin-top: 35px; color: #62695d; font-size: 11px; }
-    .avatar-stack { display: flex; padding-left: 5px; }
-    .avatar-stack span { display: grid; width: 26px; height: 26px; margin-left: -5px; place-items: center; border: 2px solid #e7eddf; border-radius: 50%; color: white; background: var(--green); font-size: 9px; }
-    .avatar-stack span:nth-child(2) { background: #d17b49; }
-    .avatar-stack span:nth-child(3) { background: #637c50; }
-    .hero-photo { position: relative; min-height: 570px; overflow: hidden; background: #536b36; }
-    .hero-photo img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center; }
-    .photo-label { position: absolute; right: 28px; bottom: 26px; display: flex; align-items: center; gap: 9px; padding: 11px 15px; background: var(--paper); font-size: 10px; font-weight: 600; }
-    .photo-label svg { color: var(--red); }
+    h1, h2, h3 { font-family: var(--display); }
+    h1 { max-width: 620px; margin-bottom: 19px; font-size: clamp(62px, 8.3vw, 112px); font-weight: 700; letter-spacing: -.095em; line-height: .83; }
+    h1 span { display: block; color: var(--green); }
+    .hero-lede { max-width: 410px; margin-bottom: 25px; color: #555d54; font-size: 14px; line-height: 1.8; }
+    .hero-lede strong { color: var(--ink); }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 19px; padding: 0 18px; border: 0; color: var(--paper); background: var(--green); font-size: 11px; font-weight: 700; transition: background .2s ease, transform .2s ease; }
+    .button:hover { background: #236449; transform: translateY(-2px); }
+    .button span { color: var(--lime); font-size: 16px; }
+    .hero-meta { display: flex; align-items: center; gap: 12px; margin-top: 34px; color: var(--muted); font-size: 10px; }
+    .meta-badge { display: grid; width: 31px; height: 31px; place-items: center; border: 1px solid #c9cfc1; border-radius: 50%; color: var(--green); font: 10px var(--mono); }
 
-    .proof { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
-    .proof-item { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 84px; border-right: 1px solid var(--line); }
-    .proof-item:last-child { border: 0; }
-    .proof-item svg { color: var(--green); }
-    .proof-item strong { display: block; font-size: 12px; }
-    .proof-item span { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
+    /* Photo slots are artwork placeholders; replace each .photo-placeholder with an <img>. */
+    .photo-placeholder { position: relative; display: flex; min-height: 410px; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; color: var(--lime); background: var(--green); text-align: center; }
+    .photo-placeholder::before, .photo-placeholder::after { position: absolute; width: 470px; height: 180px; border: 1px solid #d3f26a45; border-radius: 50%; content: ""; transform: rotate(-38deg); }
+    .photo-placeholder::after { width: 570px; height: 230px; }
+    .hero-art { min-height: 490px; }
+    .hero-art::before { width: 580px; height: 255px; }
+    .hero-art::after { width: 700px; height: 330px; }
+    .bib { position: relative; z-index: 1; display: flex; width: 56%; min-width: 205px; flex-direction: column; align-items: center; padding: 23px 20px 21px; color: var(--ink); background: var(--paper); box-shadow: 12px 15px 0 #0b3025; transform: rotate(-4deg); }
+    .bib-top { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #b5baad; color: var(--green); font: 9px var(--mono); letter-spacing: .12em; }
+    .bib-initials { margin: 8px 0 0; font: 700 clamp(88px, 12vw, 145px)/.9 var(--display); letter-spacing: -.1em; }
+    .bib-name { margin-top: 10px; font: 500 11px var(--mono); letter-spacing: .16em; }
+    .bib-bottom { width: 100%; margin-top: 15px; padding-top: 10px; border-top: 1px dashed #b5baad; color: #667166; font: 8px var(--mono); letter-spacing: .08em; }
+    .slot-label { position: absolute; z-index: 1; right: 15px; bottom: 14px; left: 15px; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #e0eadc; font: 8px var(--mono); letter-spacing: .1em; text-align: left; text-transform: uppercase; }
+    .slot-label span:last-child { color: var(--lime); }
+    .hero-sticker { position: absolute; z-index: 2; top: 40px; right: 27px; display: grid; width: 78px; height: 78px; place-items: center; border-radius: 50%; color: var(--ink); background: var(--lime); font: 9px/1.5 var(--mono); text-align: center; transform: rotate(10deg); }
 
-    .section { padding: 92px 0; }
-    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 33px; }
-    .section-head .eyebrow { margin-bottom: 11px; }
-    h2 { margin-bottom: 0; font-size: 43px; line-height: 1.05; }
-    .section-intro { max-width: 340px; margin: 0 0 2px; color: var(--muted); font-size: 13px; line-height: 1.7; }
-    .filters { display: flex; gap: 8px; margin-bottom: 22px; }
-    .filter { min-height: 35px; padding: 0 15px; border: 1px solid var(--line); border-radius: 20px; background: transparent; font-size: 11px; cursor: pointer; transition: .2s; }
-    .filter:hover, .filter[aria-pressed="true"] { border-color: var(--green); color: white; background: var(--green); }
-    .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .product { min-width: 0; }
-    .product-image { position: relative; overflow: hidden; aspect-ratio: 1 / 1.08; background: #e8e9e1; }
-    .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s cubic-bezier(.2,.8,.2,1); }
-    .product:hover .product-image img { transform: scale(1.045); }
-    .tag { position: absolute; top: 12px; left: 12px; padding: 7px 9px; color: var(--green); background: var(--paper); font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
-    .product-add { position: absolute; right: 12px; bottom: 12px; display: grid; width: 40px; height: 40px; place-items: center; border: 0; border-radius: 50%; color: white; background: var(--red); cursor: pointer; transition: transform .2s, background .2s; }
-    .product-add:hover { transform: scale(1.08); background: var(--red-dark); }
-    .product-info { display: flex; justify-content: space-between; gap: 10px; padding-top: 14px; }
-    .product-info h3 { margin: 0 0 5px; font-size: 20px; }
-    .product-info p { margin: 0; color: var(--muted); font-size: 10px; }
-    .price { padding-top: 3px; font-size: 12px; font-weight: 700; white-space: nowrap; }
-    .shop-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
-    .text-link { display: inline-flex; align-items: center; gap: 7px; color: var(--red); font-weight: 700; }
+    .ticker { overflow: hidden; border-block: 1px solid var(--line); background: #edece2; }
+    .ticker-track { display: flex; min-height: 61px; align-items: center; justify-content: space-around; gap: 25px; white-space: nowrap; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 12px; font: 9px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .ticker-item b { color: var(--orange); font-size: 15px; }
 
-    .story { display: grid; grid-template-columns: 1fr 1fr; min-height: 450px; color: white; background: var(--green); }
-    .story-photo { min-height: 450px; }
-    .story-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .story-copy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 68px 10%; }
-    .story-copy .eyebrow { color: #c3d39d; }
-    .story-copy h2 { max-width: 460px; margin-bottom: 19px; font-size: 47px; }
-    .story-copy p:not(.eyebrow) { max-width: 400px; margin-bottom: 26px; color: #d6dfd2; font-size: 13px; line-height: 1.8; }
-    .story-copy .text-link { color: #e9bc7a; }
+    .section { padding-block: 96px; }
+    .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 35px; }
+    .section-heading .eyebrow { margin-bottom: 12px; }
+    h2 { margin-bottom: 0; font-size: clamp(37px, 5vw, 59px); letter-spacing: -.075em; line-height: .98; }
+    .section-intro { max-width: 345px; margin: 0 0 3px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .moments { display: grid; grid-template-columns: 1.12fr .88fr; gap: 17px; }
+    .moment { min-width: 0; }
+    .moment .photo-placeholder { min-height: 360px; }
+    .moment:nth-child(2) .photo-placeholder { min-height: 360px; background: #e7e5d9; color: var(--green); }
+    .moment:nth-child(2) .photo-placeholder::before, .moment:nth-child(2) .photo-placeholder::after { border-color: #164b3840; }
+    .moment-number { position: relative; z-index: 1; display: grid; width: 104px; height: 104px; place-items: center; border: 1px solid currentColor; border-radius: 50%; font: 500 12px var(--mono); }
+    .moment-number strong { display: block; font: 700 38px/.9 var(--display); letter-spacing: -.08em; }
+    .moment:nth-child(2) .moment-number { width: 126px; height: 126px; }
+    .moment-caption { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 15px; }
+    .moment-caption h3 { margin: 0; font-size: 20px; letter-spacing: -.045em; }
+    .moment-caption span { color: var(--muted); font: 8px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
 
-    .quote { padding: 82px 20px 88px; text-align: center; }
-    .quote .eyebrow { justify-content: center; margin-bottom: 17px; }
-    .quote blockquote { max-width: 780px; margin: 0 auto 20px; font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); line-height: 1.2; letter-spacing: -.035em; }
-    .quote cite { color: var(--muted); font-size: 11px; font-style: normal; }
+    .cheer { display: grid; grid-template-columns: 1fr .8fr; overflow: hidden; color: var(--paper); background: var(--green); }
+    .cheer-copy { padding: 73px 10%; }
+    .cheer .eyebrow { color: var(--lime); }
+    .cheer h2 { max-width: 490px; margin-bottom: 17px; }
+    .cheer-copy > p:not(.eyebrow) { max-width: 390px; margin-bottom: 24px; color: #d9e1d8; font-size: 12px; line-height: 1.8; }
+    .cheer .button { color: var(--ink); background: var(--lime); }
+    .cheer .button:hover { background: #e2fb91; }
+    .cheer .button span { color: var(--green); }
+    .cheer-art { position: relative; display: grid; min-height: 330px; place-items: center; overflow: hidden; color: var(--ink); background: var(--lime); }
+    .cheer-art::before, .cheer-art::after { position: absolute; width: 420px; height: 180px; border: 1px solid #164b3845; border-radius: 50%; content: ""; transform: rotate(-35deg); }
+    .cheer-art::after { width: 520px; height: 230px; }
+    .cheer-word { position: relative; z-index: 1; font: 700 clamp(76px, 10vw, 135px)/.8 var(--display); letter-spacing: -.1em; transform: rotate(-8deg); }
+    .cheer-word span { display: block; margin-left: 35px; color: var(--orange); }
 
-    .newsletter { display: flex; align-items: center; justify-content: space-between; gap: 36px; padding: 35px 0; border-top: 1px solid var(--line); }
-    .newsletter h2 { font-size: 27px; }
-    .newsletter p { margin: 6px 0 0; color: var(--muted); font-size: 11px; }
-    .newsletter form { display: flex; width: min(440px, 48%); border-bottom: 1px solid var(--ink); }
-    .newsletter input { flex: 1; width: 0; min-height: 43px; border: 0; outline: 0; background: transparent; font: inherit; font-size: 12px; }
-    .newsletter input::placeholder { color: #8b8e85; }
-    .newsletter button { display: inline-flex; align-items: center; gap: 8px; padding: 0 4px 0 14px; border: 0; background: transparent; color: var(--red); font-size: 11px; font-weight: 700; cursor: pointer; }
-    .form-message { min-height: 14px; margin-top: 6px; color: var(--green); font-size: 10px; }
-    footer { padding: 25px 0; border-top: 1px solid var(--line); }
+    .final-note { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 36px; border-top: 1px solid var(--line); }
+    .final-note p { max-width: 620px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .final-note .mono { color: var(--green); font-size: 9px; white-space: nowrap; }
+    footer { padding-block: 22px; border-top: 1px solid var(--line); }
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 10px; }
-    .footer-links { display: flex; gap: 22px; }
-    .footer-links a:hover { color: var(--red); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a:hover { color: var(--orange); }
 
-    .cart-panel { position: fixed; z-index: 10; top: 0; right: 0; display: flex; flex-direction: column; width: min(410px, 100%); height: 100dvh; padding: 25px; background: var(--paper); box-shadow: -18px 0 50px #141b1720; transform: translateX(105%); transition: transform .3s ease; }
-    .cart-panel.open { transform: translateX(0); }
-    .cart-heading { display: flex; align-items: center; justify-content: space-between; padding-bottom: 19px; border-bottom: 1px solid var(--line); }
-    .cart-heading h2 { font-size: 27px; }
-    .cart-items { flex: 1; overflow-y: auto; }
-    .empty-cart { padding: 35px 0; color: var(--muted); font-size: 13px; }
-    .cart-row { display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 13px; padding: 16px 0; border-bottom: 1px solid var(--line); }
-    .cart-row img { width: 64px; height: 64px; object-fit: cover; }
-    .cart-row strong { display: block; margin-bottom: 5px; font-family: var(--serif); font-size: 17px; font-weight: 500; }
-    .cart-row span { color: var(--muted); font-size: 10px; }
-    .quantity { display: flex; align-items: center; gap: 9px; margin-top: 8px; }
-    .quantity button { display: grid; width: 23px; height: 23px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: white; cursor: pointer; }
-    .cart-total { padding-top: 18px; border-top: 1px solid var(--line); }
-    .cart-total div { display: flex; justify-content: space-between; margin-bottom: 14px; font-size: 13px; font-weight: 700; }
-    .cart-total .button { width: 100%; }
-    .scrim { position: fixed; z-index: 9; inset: 0; visibility: hidden; opacity: 0; background: #15201970; transition: .25s; }
-    .scrim.visible { visibility: visible; opacity: 1; }
-    .toast { position: fixed; z-index: 12; right: 24px; bottom: 24px; padding: 13px 18px; color: white; background: var(--green); font-size: 12px; opacity: 0; transform: translateY(8px); pointer-events: none; transition: .2s; }
-    .toast.show { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 900px) {
+    @media (max-width: 850px) {
       .wrap { width: min(100% - 40px, 700px); }
-      .hero { grid-template-columns: 1fr 1fr; min-height: 500px; }
-      .hero-copy { padding: 55px 8%; }
-      .hero-photo { min-height: 500px; }
-      h1 { font-size: clamp(44px, 7vw, 65px); }
-      .products { grid-template-columns: repeat(2, 1fr); gap: 28px 14px; }
-      .section { padding: 72px 0; }
-      .story-copy { padding-inline: 8%; }
+      .hero { min-height: auto; gap: 3%; padding-block: 57px 66px; }
+      .hero-art { min-height: 390px; }
+      .bib { width: 69%; min-width: 160px; }
+      .bib-initials { font-size: 98px; }
+      .section { padding-block: 73px; }
+      .moment .photo-placeholder, .moment:nth-child(2) .photo-placeholder { min-height: 280px; }
+      .cheer-copy { padding: 55px 8%; }
     }
-    @media (max-width: 620px) {
+    @media (max-width: 600px) {
       .wrap { width: calc(100% - 36px); }
-      .announcement { font-size: 10px; }
-      .header { min-height: 65px; }
-      .nav { position: absolute; top: 64px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 18px 15px; border-bottom: 1px solid var(--line); background: var(--paper); }
+      .topline { font-size: 8px; }
+      .header-inner { min-height: 63px; }
+      .menu-toggle { display: grid; }
+      .nav { position: absolute; top: 62px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 18px 15px; border-bottom: 1px solid var(--line); background: var(--paper); }
       .nav.open { display: flex; }
-      .nav a { padding: 13px 0; border-bottom: 1px solid var(--line); }
-      .nav a:last-child { border: 0; }
-      .menu-toggle { display: inline-flex; }
-      .hero { display: flex; flex-direction: column; }
-      .hero-copy { padding: 54px 24px 36px; }
-      h1 { max-width: 420px; font-size: clamp(47px, 13vw, 65px); }
-      .hero-copy > p:not(.eyebrow) { font-size: 13px; }
-      .hero-note { margin-top: 23px; }
-      .hero-photo { min-height: 310px; }
-      .photo-label { right: 14px; bottom: 14px; }
-      .proof { grid-template-columns: 1fr; }
-      .proof-item { justify-content: flex-start; min-height: 67px; padding-left: 15%; border-right: 0; border-bottom: 1px solid var(--line); }
-      .proof-item:last-child { border-bottom: 0; }
-      .section { padding: 63px 0; }
-      .section-head { align-items: flex-start; flex-direction: column; gap: 12px; margin-bottom: 24px; }
-      h2 { font-size: 37px; }
-      .section-intro { font-size: 12px; }
-      .filters { overflow-x: auto; padding-bottom: 3px; }
-      .filter { flex: 0 0 auto; }
-      .products { gap: 24px 10px; }
-      .product-image { aspect-ratio: 1 / 1.06; }
-      .tag { top: 8px; left: 8px; padding: 6px 7px; font-size: 8px; }
-      .product-add { right: 8px; bottom: 8px; width: 35px; height: 35px; }
-      .product-info h3 { font-size: 17px; }
-      .product-info p { font-size: 9px; }
-      .price { font-size: 11px; }
-      .shop-foot { align-items: flex-start; flex-direction: column; gap: 12px; }
-      .story { grid-template-columns: 1fr; }
-      .story-photo { min-height: 270px; max-height: 330px; }
-      .story-copy { padding: 45px 24px 50px; }
-      .story-copy h2 { font-size: 39px; }
-      .quote { padding: 63px 22px; }
-      .newsletter { align-items: stretch; flex-direction: column; gap: 17px; padding: 28px 0; }
-      .newsletter h2 { font-size: 24px; }
-      .newsletter form { width: 100%; }
+      .nav a { padding: 14px 0; border-bottom: 1px solid var(--line); }
+      .nav .nav-cta { padding: 14px 0; border: 0; }
+      .hero { grid-template-columns: 1fr; gap: 31px; padding-block: 48px 45px; }
+      .hero h1 { font-size: clamp(67px, 19vw, 104px); }
+      .hero-lede { font-size: 13px; }
+      .hero-art { min-height: 350px; }
+      .bib-initials { font-size: 110px; }
+      .hero-sticker { top: 24px; right: 18px; width: 68px; height: 68px; font-size: 8px; }
+      .ticker-track { justify-content: flex-start; min-height: 52px; }
+      .ticker-item { font-size: 8px; }
+      .section { padding-block: 61px; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 13px; margin-bottom: 23px; }
+      h2 { font-size: 43px; }
+      .section-intro { font-size: 11px; }
+      .moments { grid-template-columns: 1fr; gap: 25px; }
+      .moment .photo-placeholder, .moment:nth-child(2) .photo-placeholder { min-height: 265px; }
+      .moment-caption h3 { font-size: 18px; }
+      .cheer { grid-template-columns: 1fr; }
+      .cheer-copy { padding: 50px 24px 43px; }
+      .cheer-art { min-height: 240px; }
+      .cheer-word { font-size: 100px; }
+      .final-note { align-items: flex-start; flex-direction: column; gap: 12px; padding-block: 28px; }
+      .final-note .mono { white-space: normal; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
-      .footer-links { gap: 17px; }
-      .toast { right: 12px; bottom: 12px; left: 12px; text-align: center; }
+      .footer-links { gap: 16px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
-  <div class="announcement"><span>FREE SHIPPING</span> on orchard boxes over $45 <span aria-hidden="true">·</span> Picked fresh, packed with care</div>
+  <div class="topline"><span>One runner.</span> A whole lot of cheering. <span>Go Paly XC!</span></div>
   <header class="header">
     <div class="wrap header-inner">
-      <a class="wordmark" href="#top" aria-label="Good Fruit home"><span class="mark" aria-hidden="true"></span>good fruit</a>
+      <a class="brand" href="#top" aria-label="Jacob Guhr fan club home"><span class="brand-mark" aria-hidden="true">JG</span><span>THE JACOB GUHR<br>FAN CLUB</span></a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
       <nav class="nav" id="main-nav" aria-label="Main navigation">
-        <a href="#shop">Shop apples</a>
-        <a href="#story">Our orchard</a>
-        <a href="#newsletter">Field notes</a>
+        <a href="#about">The runner</a>
+        <a href="#moments">Photo moments</a>
+        <a class="nav-cta" href="#cheer">Send a cheer <span aria-hidden="true">↗</span></a>
       </nav>
-      <div class="header-actions">
-        <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-        <button class="icon-button cart-button" id="open-cart" type="button" aria-label="Open basket, 0 items">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
-          <span class="cart-count" id="cart-count">0</span>
-        </button>
-      </div>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
+    <section class="wrap hero" id="about" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">From our little corner of the valley</p>
-        <h1 id="hero-title">Apples worth <em>slowing</em> down for.</h1>
-        <p>Grown with patience. Picked at their peak. Sent straight from our family orchard to your fruit bowl.</p>
-        <a class="button" href="#shop">Find your favourite <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <div class="hero-note"><div class="avatar-stack" aria-hidden="true"><span>J</span><span>M</span><span>A</span></div><span>Loved by 2,400+ happy fruit people</span></div>
+        <p class="eyebrow">Paly cross country · Fan-made, full heart</p>
+        <h1 id="hero-title">Go, <span>Jacob.</span></h1>
+        <p class="hero-lede"><strong>Every mile has a moment.</strong> Here’s a little corner of the internet for cheering on Jacob Guhr, Paly cross country runner. Race day, training days, and all the miles in between—this one's for the fans.</p>
+        <a class="button" href="#moments">See the fan page <span aria-hidden="true">↓</span></a>
+        <div class="hero-meta"><span class="meta-badge" aria-hidden="true">XC</span><span>Made for cheering from the first step to the finish.</span></div>
       </div>
-      <div class="hero-photo">
-        <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="Fresh red and green apples gathered together" fetchpriority="high">
-        <div class="photo-label"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14s5-2.8 5-7.3A3 3 0 0 0 8 5a3 3 0 0 0-5 1.7C3 11.2 8 14 8 14Z" stroke="currentColor" stroke-width="1.2"/><path d="M8 5c-.2-1.4.4-2.5 1.8-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> Grown the good way since 1987</div>
+      <div class="photo-placeholder hero-art" role="img" aria-label="Decorative Jacob Guhr photo placeholder. Replace with a race-day photo.">
+        <div class="hero-sticker">MILES<br>OF<br>HEART</div>
+        <div class="bib">
+          <div class="bib-top">PALY CROSS COUNTRY</div>
+          <div class="bib-initials">JG</div>
+          <div class="bib-name">JACOB GUHR</div>
+          <div class="bib-bottom">RUN YOUR RACE · CHEER LOUD</div>
+        </div>
+        <div class="slot-label"><span>Hero photo placeholder</span><span>Add a race-day photo ↗</span></div>
       </div>
     </section>
 
-    <div class="wrap proof" aria-label="Our promises">
-      <div class="proof-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s8-4.2 8-11V5l-8-3-8 3v5c0 6.8 8 11 8 11Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg><div><strong>Good soil, good fruit</strong><span>Grown with nature, not against it</span></div></div>
-      <div class="proof-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7h11v11H3zM14 11h4l3 3v4h-7z"/><circle cx="7.5" cy="19" r="2"/><circle cx="17.5" cy="19" r="2"/></svg><div><strong>From tree to doorstep</strong><span>Packed fresh, delivered with care</span></div></div>
-      <div class="proof-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8m0-12.8L5.6 18.4"/><circle cx="12" cy="12" r="8"/></svg><div><strong>Seasonal by nature</strong><span>Varieties you won't find all year</span></div></div>
+    <div class="ticker" aria-label="Paly cross country fan club">
+      <div class="wrap ticker-track">
+        <span class="ticker-item"><b aria-hidden="true">✳</b> Run your race</span>
+        <span class="ticker-item"><b aria-hidden="true">✳</b> Cheer a little louder</span>
+        <span class="ticker-item"><b aria-hidden="true">✳</b> Paly cross country</span>
+        <span class="ticker-item"><b aria-hidden="true">✳</b> Every mile matters</span>
+      </div>
     </div>
 
-    <section class="section" id="shop">
-      <div class="wrap">
-        <div class="section-head">
-          <div><p class="eyebrow">The orchard is open</p><h2>Meet this season's stars.</h2></div>
-          <p class="section-intro">Every variety has its own little personality. Pick a few and find your kind of crisp.</p>
-        </div>
-        <div class="filters" role="group" aria-label="Filter apples">
-          <button class="filter" type="button" data-filter="all" aria-pressed="true">All apples</button>
-          <button class="filter" type="button" data-filter="eating" aria-pressed="false">For eating</button>
-          <button class="filter" type="button" data-filter="cooking" aria-pressed="false">For cooking</button>
-          <button class="filter" type="button" data-filter="new" aria-pressed="false">New picks</button>
-        </div>
-        <div class="products" id="products">
-          <article class="product" data-category="eating new" data-name="Honeycrisp" data-price="6.50" data-image="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&amp;fit=crop&amp;w=500&amp;q=80">
-            <div class="product-image"><img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="A crisp red apple" loading="lazy"><span class="tag">Just picked</span><button class="product-add" type="button" aria-label="Add Honeycrisp to basket"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></div>
-            <div class="product-info"><div><h3>Honeycrisp</h3><p>Super crisp · Sweet-tart</p></div><span class="price">$6.50 / lb</span></div>
-          </article>
-          <article class="product" data-category="eating" data-name="Pink Lady" data-price="5.75" data-image="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&amp;fit=crop&amp;w=500&amp;q=80">
-            <div class="product-image"><img src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Pink Lady apples ready to eat" loading="lazy"><span class="tag">Orchard favourite</span><button class="product-add" type="button" aria-label="Add Pink Lady to basket"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></div>
-            <div class="product-info"><div><h3>Pink Lady</h3><p>Bright · Beautifully balanced</p></div><span class="price">$5.75 / lb</span></div>
-          </article>
-          <article class="product" data-category="cooking" data-name="Granny Smith" data-price="4.50" data-image="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&amp;fit=crop&amp;w=500&amp;q=80">
-            <div class="product-image"><img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Green Granny Smith apples" loading="lazy"><span class="tag">The pie pick</span><button class="product-add" type="button" aria-label="Add Granny Smith to basket"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></div>
-            <div class="product-info"><div><h3>Granny Smith</h3><p>Good and tart · Loves a pie</p></div><span class="price">$4.50 / lb</span></div>
-          </article>
-          <article class="product" data-category="eating cooking new" data-name="Cox's Orange" data-price="7.00" data-image="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&amp;fit=crop&amp;w=500&amp;q=80">
-            <div class="product-image"><img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="A golden-red Cox's Orange apple" loading="lazy"><span class="tag">Limited harvest</span><button class="product-add" type="button" aria-label="Add Cox's Orange to basket"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></div>
-            <div class="product-info"><div><h3>Cox's Orange</h3><p>Old-world · Full of flavour</p></div><span class="price">$7.00 / lb</span></div>
-          </article>
-        </div>
-        <div class="shop-foot"><span>All apples sold by the pound. Boxes ship free over $45.</span><a class="text-link" href="#newsletter">Get the harvest calendar <span aria-hidden="true">→</span></a></div>
+    <section class="wrap section" id="moments" aria-labelledby="moments-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Make it a scrapbook</p><h2 id="moments-title">The good miles.</h2></div>
+        <p class="section-intro">The best fan pages have the best memories. Add your favorite photos from the course, the team, or the finish line.</p>
+      </div>
+      <div class="moments">
+        <article class="moment">
+          <div class="photo-placeholder" role="img" aria-label="Photo placeholder for Jacob Guhr running in a cross country race">
+            <div class="moment-number"><span><strong>01</strong>RACE DAY</span></div>
+            <div class="slot-label"><span>Photo placeholder</span><span>Replace with a race photo ↗</span></div>
+          </div>
+          <div class="moment-caption"><h3>Out on the course</h3><span>Drop in a favorite race-day shot</span></div>
+        </article>
+        <article class="moment">
+          <div class="photo-placeholder" role="img" aria-label="Photo placeholder for a Paly cross country team moment">
+            <div class="moment-number"><span><strong>02</strong>TEAM TIME</span></div>
+            <div class="slot-label"><span>Photo placeholder</span><span>Add a team moment ↗</span></div>
+          </div>
+          <div class="moment-caption"><h3>Better together</h3><span>Team pics, finish-line smiles, all of it</span></div>
+        </article>
       </div>
     </section>
 
-    <section class="story" id="story">
-      <div class="story-photo"><img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?auto=format&amp;fit=crop&amp;w=1100&amp;q=85" alt="Sunlight falling across a working orchard" loading="lazy"></div>
-      <div class="story-copy"><p class="eyebrow">A family orchard, not a factory</p><h2>We think the best things take a little longer.</h2><p>Three generations of our family have cared for these trees. We leave room for the birds, let the grass grow, and pick each apple when it's ready. It's a slower way to grow. That's kind of the point.</p><a class="text-link" href="#newsletter">A little more about us <span aria-hidden="true">→</span></a></div>
+    <section class="wrap cheer" id="cheer" aria-labelledby="cheer-title">
+      <div class="cheer-copy">
+        <p class="eyebrow">The fan club motto</p>
+        <h2 id="cheer-title">Loud cheers.<br>Long miles.</h2>
+        <p>Every runner deserves a crowd in their corner. If you’re here for Jacob, you’re in the right place. Keep showing up, keep cheering, and keep the good energy going.</p>
+        <a class="button" href="mailto:?subject=Go%20Jacob%20Guhr!&amp;body=Sending%20you%20some%20Paly%20XC%20fan%20club%20cheers!">Send Jacob some love <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="cheer-art" aria-hidden="true"><div class="cheer-word">GO<span>JACOB!</span></div></div>
     </section>
 
-    <section class="quote"><p class="eyebrow">Notes from the fruit bowl</p><blockquote>“I bought them for the pie. Ate half the bag on the drive home.”</blockquote><cite>— Emma R. · Verified apple enthusiast</cite></section>
-
-    <section class="wrap newsletter" id="newsletter">
-      <div><h2>A good thing in your inbox.</h2><p>Seasonal picks, orchard notes, and the occasional pie recipe.</p><div class="form-message" id="form-message" aria-live="polite"></div></div>
-      <form id="newsletter-form"><input type="email" name="email" placeholder="Your email address" aria-label="Your email address" required><button type="submit">Count me in <span aria-hidden="true">→</span></button></form>
+    <section class="wrap final-note" aria-label="About this fan page">
+      <p>A little fan page for a Paly cross country runner. Add your photos, share some encouragement, and keep it kind.</p>
+      <span class="mono">Unofficial fan page · Not affiliated with Paly</span>
     </section>
   </main>
 
-  <footer><div class="wrap footer-inner"><a class="wordmark" href="#top"><span class="mark" aria-hidden="true"></span>good fruit</a><span>Small-batch apples from Willow Creek Orchard · Est. 1987</span><div class="footer-links"><a href="#story">Our story</a><a href="#shop">Shop</a><a href="#newsletter">Say hello</a></div></div></footer>
-
-  <div class="scrim" id="scrim"></div>
-  <aside class="cart-panel" id="cart-panel" aria-label="Your basket" aria-hidden="true">
-    <div class="cart-heading"><h2>Your basket <span id="cart-heading-count">(0)</span></h2><button class="icon-button" id="close-cart" type="button" aria-label="Close basket"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
-    <div class="cart-items" id="cart-items"><p class="empty-cart">Your basket is taking a little nap. Add a few apples?</p></div>
-    <div class="cart-total"><div><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div><button class="button" id="checkout" type="button">Continue to checkout <span aria-hidden="true">→</span></button></div>
-  </aside>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">JG</span><span>THE JACOB GUHR<br>FAN CLUB</span></a>
+      <span>Made with miles of admiration. Go Paly XC!</span>
+      <div class="footer-links"><a href="#about">The runner</a><a href="#moments">Photo moments</a><a href="#cheer">Send a cheer</a></div>
+    </div>
+  </footer>
 
   <script>
-    const cart = new Map();
-    const cartPanel = document.getElementById('cart-panel');
-    const scrim = document.getElementById('scrim');
-    const cartItems = document.getElementById('cart-items');
-    const cartCount = document.getElementById('cart-count');
-    const cartHeadingCount = document.getElementById('cart-heading-count');
-    const cartSubtotal = document.getElementById('cart-subtotal');
-    const toast = document.getElementById('toast');
-    let toastTimer;
-
-    function showToast(message) {
-      toast.textContent = message;
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
-    }
-
-    function openCart() {
-      cartPanel.classList.add('open');
-      scrim.classList.add('visible');
-      cartPanel.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      document.getElementById('close-cart').focus();
-    }
-
-    function closeCart() {
-      cartPanel.classList.remove('open');
-      scrim.classList.remove('visible');
-      cartPanel.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      document.getElementById('open-cart').focus();
-    }
-
-    function renderCart() {
-      const entries = [...cart.entries()];
-      const count = entries.reduce((sum, [, item]) => sum + item.quantity, 0);
-      const subtotal = entries.reduce((sum, [, item]) => sum + item.price * item.quantity, 0);
-      cartCount.textContent = count;
-      cartHeadingCount.textContent = `(${count})`;
-      document.getElementById('open-cart').setAttribute('aria-label', `Open basket, ${count} ${count === 1 ? 'item' : 'items'}`);
-      cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
-
-      if (!entries.length) {
-        cartItems.innerHTML = '<p class="empty-cart">Your basket is taking a little nap. Add a few apples?</p>';
-        return;
-      }
-
-      cartItems.innerHTML = entries.map(([name, item]) => `
-        <div class="cart-row">
-          <img src="${item.image}" alt="">
-          <div><strong>${name}</strong><span>$${item.price.toFixed(2)} / lb</span>
-            <div class="quantity"><button type="button" data-quantity="-1" data-name="${name}" aria-label="Remove one ${name}">−</button><span>${item.quantity} lb</span><button type="button" data-quantity="1" data-name="${name}" aria-label="Add one ${name}">+</button></div>
-          </div><strong>$${(item.price * item.quantity).toFixed(2)}</strong>
-        </div>`).join('');
-    }
-
-    document.querySelectorAll('.product-add').forEach(button => {
-      button.addEventListener('click', () => {
-        const product = button.closest('.product');
-        const name = product.dataset.name;
-        const item = cart.get(name) || { price: Number(product.dataset.price), image: product.dataset.image, quantity: 0 };
-        item.quantity += 1;
-        cart.set(name, item);
-        renderCart();
-        showToast(`${name} added to your basket`);
-      });
-    });
-
-    document.querySelectorAll('.filter').forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.dataset.filter;
-        document.querySelectorAll('.filter').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
-        document.querySelectorAll('.product').forEach(product => {
-          product.hidden = filter !== 'all' && !product.dataset.category.split(' ').includes(filter);
-        });
-      });
-    });
-
-    document.getElementById('open-cart').addEventListener('click', openCart);
-    document.getElementById('close-cart').addEventListener('click', closeCart);
-    scrim.addEventListener('click', closeCart);
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && cartPanel.classList.contains('open')) closeCart();
-    });
-
-    cartItems.addEventListener('click', event => {
-      const button = event.target.closest('[data-quantity]');
-      if (!button) return;
-      const item = cart.get(button.dataset.name);
-      item.quantity += Number(button.dataset.quantity);
-      if (item.quantity <= 0) cart.delete(button.dataset.name);
-      renderCart();
-    });
-
-    document.getElementById('checkout').addEventListener('click', () => {
-      showToast(cart.size ? 'Thanks! Checkout is coming soon.' : 'Add a few apples to get started.');
-    });
-
-    document.getElementById('newsletter-form').addEventListener('submit', event => {
-      event.preventDefault();
-      document.getElementById('form-message').textContent = 'You’re on the list. Watch your inbox for something good.';
-      event.currentTarget.reset();
-    });
-
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.getElementById('main-nav');
+
     menuToggle.addEventListener('click', () => {
       const isOpen = mainNav.classList.toggle('open');
       menuToggle.setAttribute('aria-expanded', String(isOpen));
       menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
     });
+
     mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
       mainNav.classList.remove('open');
       menuToggle.setAttribute('aria-expanded', 'false');

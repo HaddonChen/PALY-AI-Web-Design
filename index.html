@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2e9">
+  <meta name="description" content="A fan-made page cheering on Jacob Guhr, Paly cross country runner.">
+  <title>Jacob Guhr — Paly XC Fan Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f2e9;
+      --ink: #17241e;
+      --green: #164b38;
+      --lime: #d3f26a;
+      --orange: #f06b42;
+      --muted: #72766d;
+      --line: #dcded3;
+      --sans: "DM Sans", sans-serif;
+      --display: "Space Grotesk", sans-serif;
+      --mono: "DM Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button, a { font: inherit; }
+    button { color: inherit; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: min(1190px, calc(100% - 64px)); margin-inline: auto; }
+    .mono { font-family: var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+
+    .topline { display: flex; justify-content: center; gap: 9px; padding: 10px 18px; color: var(--paper); background: var(--green); font: 10px var(--mono); letter-spacing: .1em; text-align: center; text-transform: uppercase; }
+    .topline span { color: var(--lime); }
+    .header { position: sticky; z-index: 5; top: 0; border-bottom: 1px solid var(--line); background: #f5f2e9ed; backdrop-filter: blur(12px); }
+    .header-inner { display: flex; min-height: 73px; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font: 700 14px var(--display); letter-spacing: -.04em; }
+    .brand-mark { display: grid; width: 31px; height: 31px; place-items: center; color: var(--lime); background: var(--green); font: 500 11px var(--mono); letter-spacing: -.07em; transform: rotate(-5deg); }
+    .nav { display: flex; align-items: center; gap: 32px; font-size: 12px; font-weight: 600; }
+    .nav a { transition: color .2s ease; }
+    .nav a:hover { color: var(--orange); }
+    .nav-cta { padding: 11px 15px; border: 1px solid var(--ink); font-size: 11px; }
+    .menu-toggle { display: none; width: 42px; height: 42px; place-items: center; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+
+    .hero { display: grid; min-height: 620px; grid-template-columns: 1fr 1fr; align-items: center; gap: 5%; padding-block: 62px 76px; }
+    .hero-copy { position: relative; z-index: 1; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 21px; color: var(--green); font: 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { width: 23px; height: 2px; background: var(--orange); content: ""; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--display); }
+    h1 { max-width: 620px; margin-bottom: 19px; font-size: clamp(62px, 8.3vw, 112px); font-weight: 700; letter-spacing: -.095em; line-height: .83; }
+    h1 span { display: block; color: var(--green); }
+    .hero-lede { max-width: 410px; margin-bottom: 25px; color: #555d54; font-size: 14px; line-height: 1.8; }
+    .hero-lede strong { color: var(--ink); }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 19px; padding: 0 18px; border: 0; color: var(--paper); background: var(--green); font-size: 11px; font-weight: 700; transition: background .2s ease, transform .2s ease; }
+    .button:hover { background: #236449; transform: translateY(-2px); }
+    .button span { color: var(--lime); font-size: 16px; }
+    .hero-meta { display: flex; align-items: center; gap: 12px; margin-top: 34px; color: var(--muted); font-size: 10px; }
+    .meta-badge { display: grid; width: 31px; height: 31px; place-items: center; border: 1px solid #c9cfc1; border-radius: 50%; color: var(--green); font: 10px var(--mono); }
+
+    /* Photo slots are artwork placeholders; replace each .photo-placeholder with an <img>. */
+    .photo-placeholder { position: relative; display: flex; min-height: 410px; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; color: var(--lime); background: var(--green); text-align: center; }
+    .photo-placeholder::before, .photo-placeholder::after { position: absolute; width: 470px; height: 180px; border: 1px solid #d3f26a45; border-radius: 50%; content: ""; transform: rotate(-38deg); }
+    .photo-placeholder::after { width: 570px; height: 230px; }
+    .hero-art { min-height: 490px; }
+    .hero-art::before { width: 580px; height: 255px; }
+    .hero-art::after { width: 700px; height: 330px; }
+    .bib { position: relative; z-index: 1; display: flex; width: 56%; min-width: 205px; flex-direction: column; align-items: center; padding: 23px 20px 21px; color: var(--ink); background: var(--paper); box-shadow: 12px 15px 0 #0b3025; transform: rotate(-4deg); }
+    .bib-top { width: 100%; padding-bottom: 12px; border-bottom: 1px dashed #b5baad; color: var(--green); font: 9px var(--mono); letter-spacing: .12em; }
+    .bib-initials { margin: 8px 0 0; font: 700 clamp(88px, 12vw, 145px)/.9 var(--display); letter-spacing: -.1em; }
+    .bib-name { margin-top: 10px; font: 500 11px var(--mono); letter-spacing: .16em; }
+    .bib-bottom { width: 100%; margin-top: 15px; padding-top: 10px; border-top: 1px dashed #b5baad; color: #667166; font: 8px var(--mono); letter-spacing: .08em; }
+    .slot-label { position: absolute; z-index: 1; right: 15px; bottom: 14px; left: 15px; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #e0eadc; font: 8px var(--mono); letter-spacing: .1em; text-align: left; text-transform: uppercase; }
+    .slot-label span:last-child { color: var(--lime); }
+    .hero-sticker { position: absolute; z-index: 2; top: 40px; right: 27px; display: grid; width: 78px; height: 78px; place-items: center; border-radius: 50%; color: var(--ink); background: var(--lime); font: 9px/1.5 var(--mono); text-align: center; transform: rotate(10deg); }
+
+    .ticker { overflow: hidden; border-block: 1px solid var(--line); background: #edece2; }
+    .ticker-track { display: flex; min-height: 61px; align-items: center; justify-content: space-around; gap: 25px; white-space: nowrap; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 12px; font: 9px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .ticker-item b { color: var(--orange); font-size: 15px; }
+
+    .section { padding-block: 96px; }
+    .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 35px; }
+    .section-heading .eyebrow { margin-bottom: 12px; }
+    h2 { margin-bottom: 0; font-size: clamp(37px, 5vw, 59px); letter-spacing: -.075em; line-height: .98; }
+    .section-intro { max-width: 345px; margin: 0 0 3px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .moments { display: grid; grid-template-columns: 1.12fr .88fr; gap: 17px; }
+    .moment { min-width: 0; }
+    .moment .photo-placeholder { min-height: 360px; }
+    .moment:nth-child(2) .photo-placeholder { min-height: 360px; background: #e7e5d9; color: var(--green); }
+    .moment:nth-child(2) .photo-placeholder::before, .moment:nth-child(2) .photo-placeholder::after { border-color: #164b3840; }
+    .moment-number { position: relative; z-index: 1; display: grid; width: 104px; height: 104px; place-items: center; border: 1px solid currentColor; border-radius: 50%; font: 500 12px var(--mono); }
+    .moment-number strong { display: block; font: 700 38px/.9 var(--display); letter-spacing: -.08em; }
+    .moment:nth-child(2) .moment-number { width: 126px; height: 126px; }
+    .moment-caption { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 15px; }
+    .moment-caption h3 { margin: 0; font-size: 20px; letter-spacing: -.045em; }
+    .moment-caption span { color: var(--muted); font: 8px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+
+    .cheer { display: grid; grid-template-columns: 1fr .8fr; overflow: hidden; color: var(--paper); background: var(--green); }
+    .cheer-copy { padding: 73px 10%; }
+    .cheer .eyebrow { color: var(--lime); }
+    .cheer h2 { max-width: 490px; margin-bottom: 17px; }
+    .cheer-copy > p:not(.eyebrow) { max-width: 390px; margin-bottom: 24px; color: #d9e1d8; font-size: 12px; line-height: 1.8; }
+    .cheer .button { color: var(--ink); background: var(--lime); }
+    .cheer .button:hover { background: #e2fb91; }
+    .cheer .button span { color: var(--green); }
+    .cheer-art { position: relative; display: grid; min-height: 330px; place-items: center; overflow: hidden; color: var(--ink); background: var(--lime); }
+    .cheer-art::before, .cheer-art::after { position: absolute; width: 420px; height: 180px; border: 1px solid #164b3845; border-radius: 50%; content: ""; transform: rotate(-35deg); }
+    .cheer-art::after { width: 520px; height: 230px; }
+    .cheer-word { position: relative; z-index: 1; font: 700 clamp(76px, 10vw, 135px)/.8 var(--display); letter-spacing: -.1em; transform: rotate(-8deg); }
+    .cheer-word span { display: block; margin-left: 35px; color: var(--orange); }
+
+    .final-note { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 36px; border-top: 1px solid var(--line); }
+    .final-note p { max-width: 620px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .final-note .mono { color: var(--green); font-size: 9px; white-space: nowrap; }
+    footer { padding-block: 22px; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 10px; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a:hover { color: var(--orange); }
+
+    @media (max-width: 850px) {
+      .wrap { width: min(100% - 40px, 700px); }
+      .hero { min-height: auto; gap: 3%; padding-block: 57px 66px; }
+      .hero-art { min-height: 390px; }
+      .bib { width: 69%; min-width: 160px; }
+      .bib-initials { font-size: 98px; }
+      .section { padding-block: 73px; }
+      .moment .photo-placeholder, .moment:nth-child(2) .photo-placeholder { min-height: 280px; }
+      .cheer-copy { padding: 55px 8%; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: calc(100% - 36px); }
+      .topline { font-size: 8px; }
+      .header-inner { min-height: 63px; }
+      .menu-toggle { display: grid; }
+      .nav { position: absolute; top: 62px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 18px 15px; border-bottom: 1px solid var(--line); background: var(--paper); }
+      .nav.open { display: flex; }
+      .nav a { padding: 14px 0; border-bottom: 1px solid var(--line); }
+      .nav .nav-cta { padding: 14px 0; border: 0; }
+      .hero { grid-template-columns: 1fr; gap: 31px; padding-block: 48px 45px; }
+      .hero h1 { font-size: clamp(67px, 19vw, 104px); }
+      .hero-lede { font-size: 13px; }
+      .hero-art { min-height: 350px; }
+      .bib-initials { font-size: 110px; }
+      .hero-sticker { top: 24px; right: 18px; width: 68px; height: 68px; font-size: 8px; }
+      .ticker-track { justify-content: flex-start; min-height: 52px; }
+      .ticker-item { font-size: 8px; }
+      .section { padding-block: 61px; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 13px; margin-bottom: 23px; }
+      h2 { font-size: 43px; }
+      .section-intro { font-size: 11px; }
+      .moments { grid-template-columns: 1fr; gap: 25px; }
+      .moment .photo-placeholder, .moment:nth-child(2) .photo-placeholder { min-height: 265px; }
+      .moment-caption h3 { font-size: 18px; }
+      .cheer { grid-template-columns: 1fr; }
+      .cheer-copy { padding: 50px 24px 43px; }
+      .cheer-art { min-height: 240px; }
+      .cheer-word { font-size: 100px; }
+      .final-note { align-items: flex-start; flex-direction: column; gap: 12px; padding-block: 28px; }
+      .final-note .mono { white-space: normal; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-links { gap: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline"><span>One runner.</span> A whole lot of cheering. <span>Go Paly XC!</span></div>
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Jacob Guhr fan club home"><span class="brand-mark" aria-hidden="true">JG</span><span>THE JACOB GUHR<br>FAN CLUB</span></a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
+        <a href="#about">The runner</a>
+        <a href="#moments">Photo moments</a>
+        <a class="nav-cta" href="#cheer">Send a cheer <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="wrap hero" id="about" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Paly cross country · Fan-made, full heart</p>
+        <h1 id="hero-title">Go, <span>Jacob.</span></h1>
+        <p class="hero-lede"><strong>Every mile has a moment.</strong> Here’s a little corner of the internet for cheering on Jacob Guhr, Paly cross country runner. Race day, training days, and all the miles in between—this one's for the fans.</p>
+        <a class="button" href="#moments">See the fan page <span aria-hidden="true">↓</span></a>
+        <div class="hero-meta"><span class="meta-badge" aria-hidden="true">XC</span><span>Made for cheering from the first step to the finish.</span></div>
+      </div>
+      <div class="photo-placeholder hero-art" role="img" aria-label="Decorative Jacob Guhr photo placeholder. Replace with a race-day photo.">
+        <div class="hero-sticker">MILES<br>OF<br>HEART</div>
+        <div class="bib">
+          <div class="bib-top">PALY CROSS COUNTRY</div>
+          <div class="bib-initials">JG</div>
+          <div class="bib-name">JACOB GUHR</div>
+          <div class="bib-bottom">RUN YOUR RACE · CHEER LOUD</div>
+        </div>
+        <div class="slot-label"><span>Hero photo placeholder</span><span>Add a race-day photo ↗</span></div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Paly cross country fan club">
+      <div class="wrap ticker-track">
+        <span class="ticker-item"><b aria-hidden="true">✳</b> Run your race</span>
+        <span class="ticker-item"><b aria-hidden="true">✳</b> Cheer a little louder</span>
+        <span class="ticker-item"><b aria-hidden="true">✳</b> Paly cross country</span>
+        <span class="ticker-item"><b aria-hidden="true">✳</b> Every mile matters</span>
+      </div>
+    </div>
+
+    <section class="wrap section" id="moments" aria-labelledby="moments-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Make it a scrapbook</p><h2 id="moments-title">The good miles.</h2></div>
+        <p class="section-intro">The best fan pages have the best memories. Add your favorite photos from the course, the team, or the finish line.</p>
+      </div>
+      <div class="moments">
+        <article class="moment">
+          <div class="photo-placeholder" role="img" aria-label="Photo placeholder for Jacob Guhr running in a cross country race">
+            <div class="moment-number"><span><strong>01</strong>RACE DAY</span></div>
+            <div class="slot-label"><span>Photo placeholder</span><span>Replace with a race photo ↗</span></div>
+          </div>
+          <div class="moment-caption"><h3>Out on the course</h3><span>Drop in a favorite race-day shot</span></div>
+        </article>
+        <article class="moment">
+          <div class="photo-placeholder" role="img" aria-label="Photo placeholder for a Paly cross country team moment">
+            <div class="moment-number"><span><strong>02</strong>TEAM TIME</span></div>
+            <div class="slot-label"><span>Photo placeholder</span><span>Add a team moment ↗</span></div>
+          </div>
+          <div class="moment-caption"><h3>Better together</h3><span>Team pics, finish-line smiles, all of it</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap cheer" id="cheer" aria-labelledby="cheer-title">
+      <div class="cheer-copy">
+        <p class="eyebrow">The fan club motto</p>
+        <h2 id="cheer-title">Loud cheers.<br>Long miles.</h2>
+        <p>Every runner deserves a crowd in their corner. If you’re here for Jacob, you’re in the right place. Keep showing up, keep cheering, and keep the good energy going.</p>
+        <a class="button" href="mailto:?subject=Go%20Jacob%20Guhr!&amp;body=Sending%20you%20some%20Paly%20XC%20fan%20club%20cheers!">Send Jacob some love <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="cheer-art" aria-hidden="true"><div class="cheer-word">GO<span>JACOB!</span></div></div>
+    </section>
+
+    <section class="wrap final-note" aria-label="About this fan page">
+      <p>A little fan page for a Paly cross country runner. Add your photos, share some encouragement, and keep it kind.</p>
+      <span class="mono">Unofficial fan page · Not affiliated with Paly</span>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">JG</span><span>THE JACOB GUHR<br>FAN CLUB</span></a>
+      <span>Made with miles of admiration. Go Paly XC!</span>
+      <div class="footer-links"><a href="#about">The runner</a><a href="#moments">Photo moments</a><a href="#cheer">Send a cheer</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    });
+
+    mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mainNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation');
+    }));
+  </script>
+</body>
+</html>
