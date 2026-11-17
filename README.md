@@ -1,1 +1,1 @@
-# PALY-AI-Web-Design
+# PALY AI Web Design
